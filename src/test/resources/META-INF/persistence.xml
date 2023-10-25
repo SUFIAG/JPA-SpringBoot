@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    
+	<!-- Persistence Unit for JUnit tests with in memory H2 database -->
+	<persistence-unit name="h2-test" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<!-- 
+		   A list of all named managed persistence classes must be specified 
+		   in Java SE environments to insure portability  
+		   This list is required for JUnit tests
+		-->
+		<class>org.demo.persistence.impl.jpa.record.AuthorJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.BadgeJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.BookJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.BookOrderJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.BookOrderItemJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.CountryJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.CustomerJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.EmployeeJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.EmployeeGroupJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.PublisherJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.ReviewJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.ShopJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.SynopsisJpaRecord</class>
+		<class>org.demo.persistence.impl.jpa.record.WorkgroupJpaRecord</class>
+		
+		<!-- No configuration for database ID 9 -->
+		<!-- INIT_DB =  -->
+
+		<properties>
+			<!-- Database configuration ( model db id = 9 ) -->
+			<property name="hibernate.connection.driver_class"  value="org.h2.Driver"/>
+			<property name="hibernate.connection.url"           value="jdbc:h2:mem:test;INIT=CREATE SCHEMA IF NOT EXISTS ROOT"/>
+			<property name="hibernate.connection.username"      value="sa"/>
+			<property name="hibernate.connection.password"      value="sa"/>
+			<property name="hibernate.dialect"                  value="org.hibernate.dialect.H2Dialect"/>
+			<!-- Hibernate configuration -->
+			<property name="hibernate.hbm2ddl.auto"       value="create"/> <!-- Creates the tables for the JPA entities -->
+			<property name="hibernate.show_sql"           value="true"/>
+		</properties>
+	</persistence-unit>
+   
+</persistence>
